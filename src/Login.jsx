@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 function Login() {
     let navigate = useNavigate();
     let login = ()=>{
-        navigate("/portal/dashboard")
+        navigate("/")
 
     }
 
@@ -41,12 +41,12 @@ function Login() {
                                                 <div className="form-group">
                                                     <div className="custom-control custom-checkbox small">
                                                         <input type="checkbox" className="custom-control-input" id="customCheck" />
-                                                        <label className="custom-control-label" for="customCheck">Remember Me</label>
+                                                        <label className="custom-control-label" htmlfor="customCheck">Remember Me</label>
                                                     </div>
                                                 </div>
-                                                <button onClick={login}to="/portal" className="btn btn-primary btn-user btn-block">
+                                                <Link onClick={login}to="/portal" className="btn btn-primary btn-user btn-block">
                                                     Login
-                                                </button>
+                                                </Link>
                                                 <hr />
                                                 <a href="index.html" className="btn btn-google btn-user btn-block">
                                                     <i className="fab fa-google fa-fw"></i> Login with Google

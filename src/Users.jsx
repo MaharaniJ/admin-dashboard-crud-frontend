@@ -34,19 +34,18 @@ function Users() {
 
     return (
         <div className="container-fluid">
+            {/* <!-- Page Heading --> */}
             <div className='d-sm-flex align-items-center justify-content-between mb-4'>
-
-                {/* <!-- Page Heading --> */}
-                <h1 className="h3 mb-2 text-gray-800">Tables</h1>
-                <p className="mb-4">
-                    <Link to="/portal/createuser" className={"d-none d-sm-inline-block btn-sm btn-primary"}><li className='fas fa-download fa-sn text-white-50'></li>Create User</Link></p>
+               <h1 className="h3 mb-0 text-gray-800">Users</h1>
+                <Link to="/portal/createuser" className={"d-none d-sm-inline-block btn-sm btn-primary shadow-sm"}>
+                        <li className='fas fa-download fa-sm text-white-50'></li>Create User</Link>
             </div>
-            {/* <!-- DataTales Example --> */}
+            {/* <!-- DataTales --> */}
             {
                 isLoading? <span>Loading...</span>:
                 <div className="card shadow mb-4">
                 <div className="card-header py-3">
-                        <h6 className="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        <h6 className="m-0 font-weight-bold text-primary">DataTables</h6>
                     </div>
                     <div className="card-body">
                         <div className="table-responsive">
@@ -86,10 +85,11 @@ function Users() {
                                                     <td>{user.office}</td>
                                                     <td>{user.age}</td>
                                                     <td>{user.startdate}</td>
-                                                    <td>₹{user.salary}</td>
-                                                    <Link to={`/portal/users/${user.id}`} className='btn btn-sm btn-warning mr-2'>View</Link>
+                                                    <td>${user.salary}</td>
+                                                   <td> <Link to={`/portal/users/${user.id}`} className='btn btn-sm btn-warning mr-2'>View</Link>
                                                     <Link to={`/portal/users/edit/${user.id}`} className='btn btn-sm btn-primary mr-2'>Edit</Link>
                                                     <button onClick={()=>userDelete(user.id)} className='btn btn-sm btn-danger mr-2'>Delete</button>
+                                                    </td>
                                                 </tr>
                                             )
                                         })
