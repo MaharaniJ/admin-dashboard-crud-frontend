@@ -11,18 +11,19 @@ function Users() {
         loaddata()
 
     }, [])
-
+ //`https://63fcaeb9859df29986c21a62.mockapi.io/mockapi
     let loaddata = async () => {
         setLoading(true)
-        let users = await axios.get(`https://63fcaeb9859df29986c21a62.mockapi.io/mockapi/users`)
+        let users = await axios.get(`http://localhost:3000/users?limit=100&offset=0`)
         setUsers(users.data)
         setLoading(false)
     }
+    //https://63fcaeb9859df29986c21a62.mockapi.io/mockapi
     let userDelete = async (id) => {
         try {
             let ask = window.confirm("Do you want to delete?")
             if (ask) {
-                await axios.delete(`https://63fcaeb9859df29986c21a62.mockapi.io/mockapi/users/${id}`)
+                await axios.delete(`http://localhost:3000/user/${id}`)
                 loaddata()
             }
 

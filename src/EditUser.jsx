@@ -45,8 +45,9 @@ function EditUser() {
             }
             return errors;
         },
+        //https://63fcaeb9859df29986c21a62.mockapi.io/mockapi
         onSubmit: async (values) => {
-            await axios.put(`https://63fcaeb9859df29986c21a62.mockapi.io/mockapi/users/${params.id}`, values)
+            await axios.put(`http://localhost:3000/user/${params.id}`, values)
             navigate("/portal/users")
 
         }
@@ -55,9 +56,11 @@ function EditUser() {
         loadUser()
 
     }, [])
+
+    //https://63fcaeb9859df29986c21a62.mockapi.io/mockapi
     let loadUser = async () => {
         try {
-            let user = await axios.get(`https://63fcaeb9859df29986c21a62.mockapi.io/mockapi/users/${params.id}`)
+            let user = await axios.get(`http://localhost:3000/user/${params.id}`)
             formik.setValues({
                 name: user.data.name,
                 position: user.data.position,
