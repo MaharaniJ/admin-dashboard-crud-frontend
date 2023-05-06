@@ -13,9 +13,11 @@ function UserView() {
   useEffect(() => {
     loadUser()
   }, [])
+
+  ///https://63fcaeb9859df29986c21a62.mockapi.io/mockapi/users/${params.id}
   let loadUser = async () => {
     try {
-      let user = await axios.get(`https://63fcaeb9859df29986c21a62.mockapi.io/mockapi/users/${params.id}`)
+      let user = await axios.get(`http://localhost:3000/user/${params.id}`)
       setUserData(user.data)
     }
     catch (error) {
