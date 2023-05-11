@@ -1,0 +1,4 @@
+create,read,delete the token from browser 
+window.localstorage.setItem()
+window.localstorage.getItem()
+window.localstorage.removeItem()

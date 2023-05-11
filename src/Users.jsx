@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { env } from './config';
 
 
 function Users() {
@@ -14,7 +15,11 @@ function Users() {
  //`https://63fcaeb9859df29986c21a62.mockapi.io/mockapi
     let loaddata = async () => {
         setLoading(true)
-        let users = await axios.get(`http://localhost:3000/users?limit=100&offset=0`)
+        let users = await axios.get(`${env.api}/users?limit=100&offset=0`,{
+            headers:{
+                'Authorization': window.localStorage.getItem("app-token")
+            }
+        })
         setUsers(users.data)
         setLoading(false)
     }
@@ -23,7 +28,11 @@ function Users() {
         try {
             let ask = window.confirm("Do you want to delete?")
             if (ask) {
-                await axios.delete(`http://localhost:3000/user/${id}`)
+                await axios.delete(`${env.api}/user/${id}`,{
+                    headers:{
+                        'Authorization': window.localStorage.getItem("app-token")
+                    }
+                })
                 loaddata()
             }
 

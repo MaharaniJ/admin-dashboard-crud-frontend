@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+import { env } from './config';
 
 function UserView() {
 
@@ -17,7 +18,11 @@ function UserView() {
   ///https://63fcaeb9859df29986c21a62.mockapi.io/mockapi/users/${params.id}
   let loadUser = async () => {
     try {
-      let user = await axios.get(`http://localhost:3000/user/${params.id}`)
+      let user = await axios.get(`${env.api}/user/${params.id}`,{
+        headers:{
+          'Authorization': window.localStorage.getItem("app-token")
+      }
+      })
       setUserData(user.data)
     }
     catch (error) {

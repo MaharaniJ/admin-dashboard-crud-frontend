@@ -2,6 +2,7 @@ import { useFormik } from 'formik'
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import { env } from './config';
 
 function EditUser() {
     const params = useParams()
@@ -47,7 +48,11 @@ function EditUser() {
         },
         //https://63fcaeb9859df29986c21a62.mockapi.io/mockapi
         onSubmit: async (values) => {
-            await axios.put(`http://localhost:3000/user/${params.id}`, values)
+            await axios.put(`${env.api}/user/${params.id}`, values,{
+                headers:{
+                    'Authorization': window.localStorage.getItem("app-token")
+                }
+            })
             navigate("/portal/users")
 
         }
@@ -60,7 +65,11 @@ function EditUser() {
     //https://63fcaeb9859df29986c21a62.mockapi.io/mockapi
     let loadUser = async () => {
         try {
-            let user = await axios.get(`http://localhost:3000/user/${params.id}`)
+            let user = await axios.get(`${env.api}/user/${params.id}`,{
+                headers:{
+                    'Authorization': window.localStorage.getItem("app-token")
+                }
+            })
             formik.setValues({
                 name: user.data.name,
                 position: user.data.position,
