@@ -1,3 +1,3 @@
 export const env = {
-    api : "http://localhost:3000"
+    api : "deployment-url-backend-frwk-3xz5j4ur1-maharanij.vercel.app"
 }
