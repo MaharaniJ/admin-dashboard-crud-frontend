@@ -10,12 +10,14 @@ import UserView from './UserView';
 import EditUser from './EditUser';
 
 
+
 function App() {
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login />}></Route>
+        
         <Route path='/portal' element={<Portal />}>
           <Route path='dashboard' element={<Dashboard />}></Route>
           <Route path='users' element={<Users />}></Route>
