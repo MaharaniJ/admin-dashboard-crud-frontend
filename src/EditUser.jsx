@@ -43,30 +43,12 @@ function EditUser() {
       return errors;
     },
     onSubmit: async (values) => {
-        try {
-          const response = await axios.put(
-            `https://645cd360e01ac61058945382.mockapi.io/users/${params.id}`,
-            values
-          );
-          
-          // Update the formik values with the updated data
-          formik.setValues(response.data);
-          
-          navigate(`/portal/users`); // Navigate to UserView with updated data
-        } catch (error) {
-          console.error(error);
-        }
-      },
-      
-
-    // onSubmit: async (values) => {
-        
-    //     await axios.put(
-    //       `https://645cd360e01ac61058945382.mockapi.io/users/${params.id}`,
-    //       values
-    //     );
-    //   navigate("/portal/users");
-    // },
+        await axios.put(
+          `https://645cd360e01ac61058945382.mockapi.io/users/${params.id}`,
+          values
+        );
+      navigate("/portal/users");
+    },
   });
   useEffect(() => {
     loadUser();

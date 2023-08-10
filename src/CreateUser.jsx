@@ -1,8 +1,11 @@
 import { useFormik } from 'formik';
 import React from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { env } from './config';
 
 function CreateUser() {
+    const navigate = useNavigate()
     const formik = useFormik({
 
         initialValues: {
@@ -42,9 +45,15 @@ function CreateUser() {
             }
             return errors;
         },
+        //https://63fcaeb9859df29986c21a62.mockapi.io/mockapi
         onSubmit: async (values) => {
-            let user = await axios.post(`https://63fcaeb9859df29986c21a62.mockapi.io/mockapi/users`, values)
+            let user = await axios.post(`${env.api}/user`, values,{
+                headers:{
+                    'Authorization': window.localStorage.getItem("app-token")
+                }
+            })
             alert("User Created")
+            navigate("/portal/users")
         }
     }
 

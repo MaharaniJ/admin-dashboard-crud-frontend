@@ -1,15 +1,36 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import {  useNavigate } from 'react-router-dom';
+import { env } from './config';
+import axios from 'axios';
 
-function Login() {
-    let navigate = useNavigate();
-    let login = () => {
-        navigate("/")
+ function Login() {
+     let navigate = useNavigate();
+//     let login = () => {
+//         navigate("/")
 
-    }
-
-
-    return (
+//     }
+let formik = useFormik({
+initialValues : {
+    email :"",
+    password : ""
+},
+onSubmit : async (values)=>{
+try{
+   let loginData = await axios.post(`${env.api}/login`,values)
+  if(loginData.status === 200){
+    navigate('/portal/dashboard')
+    window.localStorage.setItem("app-token",loginData.data.token)
+    
+  }
+   console.log(loginData)
+}
+catch(error){
+alert(error.response.data.message)
+}
+}
+})
+return (
         <div>
             <div className="container">
 
@@ -28,15 +49,16 @@ function Login() {
                                             <div className="text-center">
                                                 <h1 className="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                             </div>
-                                            <form className="user">
+                                            <form className="user" onSubmit={formik.handleSubmit}>
                                                 <div className="form-group">
                                                     <input type="email" className="form-control form-control-user"
-                                                        id="exampleInputEmail" aria-describedby="emailHelp"
-                                                        placeholder="Enter Email Address..." />
+                                                           value={formik.values.email} onChange={formik.handleChange} name="email"
+                                                         />
                                                 </div>
                                                 <div className="form-group">
                                                     <input type="password" className="form-control form-control-user"
-                                                        id="exampleInputPassword" placeholder="Password" />
+                                                     value={formik.values.password} onChange={formik.handleChange}
+                                                        name="password"  />
                                                 </div>
                                                 <div className="form-group">
                                                     <div className="custom-control custom-checkbox small">
@@ -44,9 +66,9 @@ function Login() {
                                                         <label className="custom-control-label" htmlFor="customCheck">Remember Me</label>
                                                     </div>
                                                 </div>
-                                                <Link onClick={login} to="/portal" className="btn btn-primary btn-user btn-block">
+                                                <button type='submit'  className="btn btn-primary btn-user btn-block">
                                                     Login
-                                                </Link>
+                                                </button>
                                                 <hr />
                                                 <a href="index.html" className="btn btn-google btn-user btn-block">
                                                     <i className="fab fa-google fa-fw"></i> Login with Google
