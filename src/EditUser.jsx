@@ -2,7 +2,9 @@ import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+
 import { env } from "./config";
+
 
 function EditUser() {
   const params = useParams();
@@ -43,6 +45,7 @@ function EditUser() {
       }
       return errors;
     },
+
     //https://63fcaeb9859df29986c21a62.mockapi.io/mockapi
     onSubmit: async (values) => {
       await axios.put(`${env.api}/user/${params.id}`, values, {
@@ -50,9 +53,16 @@ function EditUser() {
           Authorization: window.localStorage.getItem("app-token"),
         },
       });
-      navigate("/portal/users");
-    },
-  });
+
+    // onSubmit: async (values) => {
+    //     await axios.put(
+    //       `https://645cd360e01ac61058945382.mockapi.io/users/${params.id}`,
+    //       values
+    //     );
+
+    //   navigate("/portal/users");
+    // },
+  // });
   useEffect(() => {
     loadUser();
   }, []);
