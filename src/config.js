@@ -1,3 +1,3 @@
 export const env = {
-  api: "",
+  api: "deployment-url-backend.vercel.app",
 };
