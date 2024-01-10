@@ -25,7 +25,7 @@ function UserView() {
   };
 
   return (
-    <div>
+    <div className="container-fluid d-flex justify-content-center align-items-center">
       <h1>{userData.name}</h1>
       <h1>{userData.position}</h1>
       <h1>{userData.office}</h1>
