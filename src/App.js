@@ -8,6 +8,7 @@ import Portal from './Portal';
 import Login from './Login';
 import UserView from './UserView';
 import EditUser from './EditUser';
+import Register from './Register';
 
 
 
@@ -17,6 +18,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login />}></Route>
+        <Route path='/register' element={<Register />} />
         
         <Route path='/portal' element={<Portal />}>
           <Route path='dashboard' element={<Dashboard />}></Route>

@@ -1,3 +1,3 @@
 export const env = {
-  api: "deployment-url-backend.vercel.app",
+  api: "https://admindashboard-mern-9bo5.onrender.com",
 };
